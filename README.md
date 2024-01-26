@@ -1,4 +1,4 @@
-# Benutzerauthentifizierungsprojekt
+# Benutzerauthentifizierung
 
 Dieses Projekt wurde entwickelt, um eine sichere und zuverlässige Benutzerauthentifizierung für Webanwendungen zu ermöglichen. Es verwendet eine Kombination von Node.js, JSON Web Token (jsonwebtoken), React, Express, Mongoose und Express-Validator.
 
@@ -20,13 +20,8 @@ Dieses Projekt wurde entwickelt, um eine sichere und zuverlässige Benutzerauthe
 
 ## Dateistruktur
 
-- `server/`: Enthält den Node.js-Backend-Code
-- `client/`: Enthält den React-Frontend-Code
-
-## Mitwirkende
-
-- Max Mustermann
-- Maria Musterfrau
+- `server/`: Enthält den Node.js-Backend
+- `client/`: Enthält den React-Frontend
 
 ## Lizenz
 
