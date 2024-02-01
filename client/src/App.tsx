@@ -4,6 +4,7 @@ import { Context } from "./main";
 import { observer } from "mobx-react-lite";
 import { IUser } from "./models/IUser";
 import UserService from "./services/UserService";
+import "./index.scss";
 
 const App: FC = () => {
   const { store } = useContext(Context);
@@ -19,7 +20,9 @@ const App: FC = () => {
     try {
       const response = await UserService.fetchUsers();
       setUsers(response.data);
-    } catch (error) {}
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   if (store.isLoading) {
@@ -28,23 +31,41 @@ const App: FC = () => {
 
   if (!store.isAuth) {
     return (
-      <div>
+      <div className="flow-container justify-center">
+        <div className="mb-10">
+          <img className="h-52" src="./jwt.svg" alt="JsonWebToken" />
+        </div>
         <LoginForm />
-        <button onClick={getUsers}>Benutzer anzeigen</button>
       </div>
     );
   }
   return (
-    <div>
-      <h1>{store.isAuth ? `Benutzer ist autorisiert! ${store.user.email}` : "AUTORISIEREN"}</h1>
-      <h1>{store.user.isActivated ? `Email ist bestätigt.` : "EMAIL BESTÄTIGEN"}</h1>
-      <button onClick={() => store.logout()}>Logout</button>
-      <div>
-        <button onClick={getUsers}>Benutzer anzeigen</button>
+    <div className="flow-container justify-evenly">
+      <div className="flex flex-col justify-between">
+        <h1 className="m-2 py-2 text-4xl font-extrabold text-violet-950 border-transparent rounded-md">
+          {store.isAuth ? `Benutzer ist autorisiert! ${store.user.email}` : "AUTORISIEREN"}
+        </h1>
+
+        {users.map((user) => (
+          <div
+            className="mb-2 py-2 text-center bg-gray-200 text-3xl font-bold text-violet-900 border-transparent rounded-md"
+            key={user.id}
+          >
+            {user.email}
+            <h1 className="m-2 py-2 text-2xl font-semibold italic text-green-800">
+              {store.user.isActivated ? `Email ist bestätigt.` : "EMAIL BESTÄTIGEN"}
+            </h1>
+          </div>
+        ))}
       </div>
-      {users.map((user) => (
-        <div key={user.id}>{user.email}</div>
-      ))}
+      <div className="flex flex-col items-stretch">
+        <button className="myBtn myBtn__primary" onClick={getUsers}>
+          Benutzer anzeigen
+        </button>
+        <button className="myBtn myBtn__secondary" onClick={() => store.logout()}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

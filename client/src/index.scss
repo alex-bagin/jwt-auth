@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --btn-color: #5f00e3;
+  --btn-color-shadow: #5f00e367;
+}
+
+body {
+  @apply bg-gradient-to-bl from-violet-500 to-white box-border scroll-smooth;
+}
+
+.flow-container {
+  @apply flex flex-col items-center h-[100dvh];
+}
+
+input {
+  @apply m-2 py-3 px-5 border rounded-md border-gray-400 border-solid;
+}
+
+.myBtn {
+  @apply m-4 px-7 py-2 text-lg  cursor-pointer border border-[--btn-color] rounded-[6px] tracking-wide;
+
+  &__primary {
+    @apply text-white bg-[--btn-color] shadow-lg shadow-[--btn-color-shadow];
+  }
+
+  &__secondary {
+    @apply text-[--btn-color];
+  }
+
+  &:hover {
+    @apply bg-[#4300a0] text-white transition-all shadow-lg shadow-[--btn-color-shadow];
+  }
+
+  &:active {
+    @apply bg-[#2c0069] text-white transition-all shadow-lg shadow-[--btn-color-shadow];
+  }
+
+  @media (max-width: 1024px) {
+    .myBtn {
+      @apply px-3 py-1 text-lg  cursor-pointer border border-[--btn-color] rounded-[6px] tracking-normal;
+    }
+  }
+}
