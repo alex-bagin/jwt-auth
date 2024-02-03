@@ -1,6 +1,7 @@
 const userService = require("../service/user-service");
 const { validationResult } = require("express-validator");
 const ApiError = require("../exeptions/api-error");
+const keys = require("../keys/index");
 
 class UserController {
   async registration(req, res, next) {
@@ -47,7 +48,7 @@ class UserController {
     try {
       const activationLink = req.params.link;
       await userService.activate(activationLink);
-      return res.redirect(process.env.CLIENT_URL);
+      return res.redirect(keys.CLIENT_URL);
     } catch (e) {
       next(e);
     }

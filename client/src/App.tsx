@@ -33,7 +33,7 @@ const App: FC = () => {
     return (
       <div className="flow-container justify-center">
         <div className="mb-10">
-          <img className="h-52" src="./jwt.svg" alt="JsonWebToken" />
+          <img className="h-52" src="./jwt1.webp" alt="JsonWebToken" />
         </div>
         <LoginForm />
       </div>

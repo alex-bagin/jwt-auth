@@ -1,11 +1,11 @@
 const nodemailer = require("nodemailer");
-require("dotenv");
+const keys = require("../keys/index");
 
 class MailService {
   constructor() {
     this.transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
+      host: keys.SMTP_HOST,
+      port: keys.SMTP_PORT,
       secure: true,
       debug: true,
       tls: {
@@ -13,17 +13,17 @@ class MailService {
         rejectUnauthorized: false,
       },
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
+        user: keys.SMTP_USER,
+        pass: keys.SMTP_PASSWORD,
       },
     });
   }
 
   async sendActivatioMail(to, link) {
     await this.transporter.sendMail({
-      from: "aleksej.7777@web.de",
+      from: keys.SMTP_USER,
       to,
-      subject: "Aktivierung des Accounts auf " + process.env.API_URL,
+      subject: "Aktivierung des Accounts auf " + keys.API_URL,
       text: "",
       html: `
       <div>

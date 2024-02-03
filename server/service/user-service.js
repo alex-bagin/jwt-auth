@@ -5,6 +5,7 @@ const mailService = require("./mail-service");
 const tokenService = require("./token-service");
 const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exeptions/api-error");
+const keys = require("../keys/index");
 
 class UserService {
   async registration(email, password) {
@@ -20,7 +21,7 @@ class UserService {
     const user = await UserModel.create({ email, password: hashPassword, activationLink }); //User anlegen in der DB
     await mailService.sendActivatioMail(
       email,
-      `${process.env.API_URL}/api/activate/${activationLink}`
+      `${keys.process.env.API_URL}/api/activate/${activationLink}`
     ); //ActivationLink versenden an den neuen User
 
     const userDto = new UserDto(user);
